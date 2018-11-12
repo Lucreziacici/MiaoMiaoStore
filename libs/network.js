@@ -1,7 +1,5 @@
 //获取open_id
 var open_id;
-
-
 //公共地址
 var commonurl = "https://mall.shjinjia.com.cn/api/";
 //测试
