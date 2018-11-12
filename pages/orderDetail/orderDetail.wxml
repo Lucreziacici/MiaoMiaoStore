@@ -70,9 +70,9 @@
           <text>邮费</text>
           <text>￥{{order.feight_price}}</text>
         </view>
-        <view class='orderdetail-price-item'>
+        <view wx-if="{{order.discount}}" class='orderdetail-price-item'>
           <text>优惠</text>
-          <text>￥{{order.discount_pirce}}</text>
+          <text>￥{{order.discount}}</text>
         </view>
         <view class='orderdetail-price-item' wx:if="{{order.goods_tax>0}}">
           <text>税金</text>

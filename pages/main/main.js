@@ -26,17 +26,17 @@ Page({
     imgheights: [],
     resourceurl: resourceurl
   },
-  formSubmit: function(e) {
+  formSubmit: function (e) {
     console.log(e.detail.formId)
     network.PostFormId(e.detail.formId)
   },
-  onLoad: function() {
+  onLoad: function () {
     network.IsuserInfo();
   },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     app.getUserInfo((userInfo, open_id) => {
       //更新数据
       this.setData({
@@ -62,10 +62,12 @@ Page({
           res.data.res_content.recommend[i].category_goods_list = res.data.res_content.recommend[i].category_goods_list.slice(0, 6)
         }
       }
-      wx.setNavigationBarColor({
-        frontColor: res.data.res_content.page.font_color,
-        backgroundColor: res.data.res_content.page.navigation_bar_color
-      })
+      if (res.data.res_content.page.font_color && res.data.res_content.page.navigation_bar_color) {
+        wx.setNavigationBarColor({
+          frontColor: res.data.res_content.page.font_color,
+          backgroundColor: res.data.res_content.page.navigation_bar_color,
+        })
+      }
       this.setData({
         imgUrls: res.data.res_content.banner,
         special: res.data.res_content.recommend,
@@ -76,7 +78,7 @@ Page({
       console.log(res)
     })
   },
-  imageLoad: function(e) {
+  imageLoad: function (e) {
     //获取图片真实宽度
     var imgwidth = e.detail.width,
       imgheight = e.detail.height,
@@ -92,7 +94,7 @@ Page({
       imgheights: imgheights,
     })
   },
-  bindchange: function(e) {
+  bindchange: function (e) {
     console.log(e.detail.current)
     this.setData({
       current: e.detail.current
@@ -100,7 +102,7 @@ Page({
   },
 
   // 前往搜索页，带个参数
-  gosearch: function(e) {
+  gosearch: function (e) {
     wx.navigateTo({
       url: "/pages/search/search",
     })
@@ -112,17 +114,17 @@ Page({
   //     hasUserInfo: true
   //   })
   // },
-  onShareAppMessage: function(res) {
+  onShareAppMessage: function (res) {
 
     if (res.from === 'button') {
       // 来自页面内转发按钮
     }
     return {
       title: this.data.product.title,
-      success: function(res) {
+      success: function (res) {
         // 转发成功
       },
-      fail: function(res) {
+      fail: function (res) {
         // 转发失败
       }
     }
